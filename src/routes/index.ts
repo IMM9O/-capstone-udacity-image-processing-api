@@ -3,6 +3,6 @@ import imageRouters from './api/image';
 
 const routes = express.Router();
 
-routes.use('/img', imageRouters);
+routes.use('/images', imageRouters);
 
 export default routes;
