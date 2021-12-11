@@ -1,8 +1,8 @@
 import express from 'express';
+import { handleResizeAPI } from '../../utilities/controllers';
+
 const images = express.Router();
 
-images.get('/', (req, res) => {
-  res.send('Image API Routes');
-});
+images.get('/', handleResizeAPI);
 
 export default images;
