@@ -19,6 +19,6 @@
 * To test the app run `npm run test`
 * To build the app run `npm run build`
 * To check app format run `npm run prettier`
-* To check app error run `npm run link`
+* To check app error run `npm run lint`
 
 
