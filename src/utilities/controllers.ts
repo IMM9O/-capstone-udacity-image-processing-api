@@ -1,14 +1,9 @@
 import express from 'express';
 import path from 'path';
+import { thumbnailsRelativePath } from '../constants/paths';
+import { Image } from '../types/Image';
 
 import { resizeImage } from './sharp';
-
-interface Image {
-  name: string;
-  format: string;
-  width: string;
-  height: string;
-}
 
 export const handleResizeAPI = async (
   req: express.Request,
@@ -23,8 +18,8 @@ export const handleResizeAPI = async (
     parseInt(value.height),
   );
 
-  res.type(`image/${value.format || 'png'}`).status(200);
+  res.type(`image/${value.format || 'jpg'}`).status(200);
   res.sendFile(newFile as string, {
-    root: path.join(__dirname, '../public/thumbnails'),
+    root: path.join(__dirname, thumbnailsRelativePath),
   });
 };

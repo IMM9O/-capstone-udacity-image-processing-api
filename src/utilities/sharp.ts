@@ -1,5 +1,8 @@
 import sharp from 'sharp';
-import fs from 'fs';
+import {
+  imagesAbsolutePath,
+  thumbnailsAbsolutePath,
+} from '../constants/paths';
 import { convertedImageName } from './image';
 
 export const resizeImage = async (
@@ -9,21 +12,16 @@ export const resizeImage = async (
   height: number,
 ): Promise<string | Error> => {
   try {
-    // const readStream = fs.createReadStream(
-    //   'src/public/images/' + name + '.jpg',
-    // );
-
     const newFileName = convertedImageName(
       name,
       width,
       height,
       format,
     );
-    console.log(newFileName);
-    await sharp('src/public/images/' + name + '.jpg')
+    await sharp(imagesAbsolutePath + '/' + name + '.jpg')
       .toFormat((format as unknown) as sharp.AvailableFormatInfo)
       .resize(width, height)
-      .toFile('src/public/thumbnails/' + newFileName);
+      .toFile(thumbnailsAbsolutePath + '/' + newFileName);
 
     return newFileName;
   } catch (error) {
