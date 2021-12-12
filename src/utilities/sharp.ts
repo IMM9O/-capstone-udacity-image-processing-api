@@ -10,7 +10,7 @@ export const resizeImage = async (
   format: string,
   width: number,
   height: number,
-): Promise<string | Error> => {
+): Promise<string> => {
   try {
     const newFileName = convertedImageName(
       name,
@@ -25,7 +25,6 @@ export const resizeImage = async (
 
     return newFileName;
   } catch (error) {
-    console.log(error);
     return 'Error';
   }
 };

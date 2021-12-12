@@ -1,3 +1,3 @@
 it('Jasmine should run without errors', () => {
-    expect(true).toBeTruthy();
+  expect(true).toBeTruthy();
 });
