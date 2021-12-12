@@ -18,7 +18,7 @@ describe('Test endpoint responses', () => {
     done();
   });
   it('API Should return 400 if missing width param', async done => {
-    const response = await request.get('/api/images?name=usa&hight=400');
+    const response = await request.get('/api/images?name=usa&height=400');
     expect(response.status).toBe(400);
     done();
   });
