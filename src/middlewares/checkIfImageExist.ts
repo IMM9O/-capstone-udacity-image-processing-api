@@ -10,32 +10,26 @@ const checkIfImageExist = (
   next: express.NextFunction,
 ) => {
   const value = (req.query as unknown) as Image;
-
-  console.log('Check Image API Middleware');
-
-  if (!value.name || !value.width || !value.height) {
-    res.status(400);
-    res.json({
-      error: 'Missing mandatory param name, width or height',
-    });
-  }
+  console.log('Check Image Exist Middleware');
 
   // check if image exist
-
   try {
     if (
       fs.existsSync(imagesAbsolutePath + '/' + value.name + '.jpg')
     ) {
-      console.log('Original Image Exist');
+      next();
+    } else {
+      res.status(404);
+      res.json({
+        error: 'Original Image Not Found',
+      });
     }
   } catch (err) {
-    console.log('Original Image Not Exist')
     res.status(404);
     res.json({
-      error: 'Original Image Not Exist',
+      error: 'Original Image Not Found',
     });
   }
-  next();
 };
 
 export default checkIfImageExist;

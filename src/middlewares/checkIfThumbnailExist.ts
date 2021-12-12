@@ -15,6 +15,8 @@ const checkIfThumbnailExist = (
 ) => {
   const value = (req.query as unknown) as Image;
 
+  console.log('Check Thumbnail Middleware');
+
   const fileName = convertedImageName(
     value.name,
     parseInt(value.width),
@@ -29,9 +31,10 @@ const checkIfThumbnailExist = (
       res.sendFile(fileName as string, {
         root: path.join(__dirname, thumbnailsRelativePath),
       });
+    } else {
+      next();
     }
   } catch (err) {
-    console.error(err);
     next();
   }
 };
